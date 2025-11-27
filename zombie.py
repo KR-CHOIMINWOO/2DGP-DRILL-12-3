@@ -110,11 +110,17 @@ class Zombie:
         self.y += distance * math.sin(self.dir)
 
     def run_away_to(self, tx,ty):
-        pass
+        # 각도 구하기
+        self.dir = math.atan2(ty - self.y, tx - self.x)
+        # 거리 구하기
+        distance = RUN_SPEED_PPS * game_framework.frame_time
+
+        self.x -= distance * math.cos(self.dir)
+        self.y -= distance * math.sin(self.dir)
 
     def run_away_boy(self, r=0.5):
         self.state = 'Walk'
-
+        self.run_away_to(self.x, self.y)
 
     def move_to(self, r=0.5):
         self.state = 'Walk'
