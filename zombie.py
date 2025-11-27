@@ -152,6 +152,15 @@ class Zombie:
         return BehaviorTree.SUCCESS
         pass
 
+    def if_boy_nearby(self, distance):
+        return BehaviorTree.SUCCESS if self.distance_less_than(common.boy.x, common.boy.y, self.x, self.y,
+                                                               distance) else BehaviorTree.FAIL
+
+    def if_zombie_ball_less(self):
+        return BehaviorTree.SUCCESS if self.ball_count < common.boy.ball_count else BehaviorTree.FAIL
+
+    def if_zombie_ball_more_equal(self):
+        return BehaviorTree.SUCCESS if self.ball_count >= common.boy.ball_count else BehaviorTree.FAIL
 
     def build_behavior_tree(self):
         a1 = Action('목표 지점 설정', self.set_target_location, 1000, 200)
@@ -164,10 +173,12 @@ class Zombie:
         wander = Sequence('배회', a3, a2)
 
         c1 = Condition('소년이 근처에 있는가?', self.if_boy_nearby, 7)
-        a4 = Action('소년 추적', self.move_to_boy)
-        chase_if_boy_nearby = Sequence('소년이 근처에 있으면 추적', c1, a4)
+        a4 = Action('소년과 상호작용', self.move_to_boy)
+        chase_if_boy_nearby = Sequence('소년이 근처에 있으면 상호작용', c1, a4)
 
-        root = chase_or_wander = Selector('추적 또는 배회', chase_if_boy_nearby, wander)
+
+
+        root = chase_or_wander = Selector('상호작용 또는 배회', chase_if_boy_nearby, wander)
 
 
         self.bt = BehaviorTree(root)
