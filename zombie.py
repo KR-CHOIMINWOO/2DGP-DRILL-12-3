@@ -194,6 +194,9 @@ class Zombie:
         a4 = Action('추격', self.move_to_boy)
         s3 = Sequence('공이 많으면 추격', c3, a4)
 
+        sel1 = Selector('도망 또는 추격', s2, s3)
+        s4 = Sequence('소년이 근처면 행동 선택', c1, sel1)
+
         root = chase_or_wander = Selector('상호작용 또는 배회', chase_if_boy_nearby, wander)
 
 
