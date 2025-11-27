@@ -106,12 +106,9 @@ class Zombie:
         #거리 구하기
         distance = RUN_SPEED_PPS * game_framework.frame_time
 
-        if self.ball_count >= common.boy.ball_count:
-            self.x += distance * math.cos(self.dir)
-            self.y += distance * math.sin(self.dir)
-        else:
-            self.x -= distance * math.cos(self.dir)
-            self.y -= distance * math.sin(self.dir)
+        self.x += distance * math.cos(self.dir)
+        self.y += distance * math.sin(self.dir)
+
 
 
 
