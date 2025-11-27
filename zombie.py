@@ -197,7 +197,7 @@ class Zombie:
         sel1 = Selector('도망 또는 추격', s2, s3)
         s4 = Sequence('소년이 근처면 행동 선택', c1, sel1)
 
-        root = chase_or_wander = Selector('상호작용 또는 배회', sel1, wander)
+        root = chase_or_wander = Selector('상호작용 또는 배회', s4, wander)
 
 
         self.bt = BehaviorTree(root)
