@@ -105,8 +105,13 @@ class Zombie:
         self.dir = math.atan2(ty-self.y, tx-self.x)
         #거리 구하기
         distance = RUN_SPEED_PPS * game_framework.frame_time
-        self.x += distance * math.cos(self.dir)
-        self.y += distance * math.sin(self.dir)
+
+        if self.ball_count >= common.boy.ball_count:
+            self.x += distance * math.cos(self.dir)
+            self.y += distance * math.sin(self.dir)
+        else:
+            self.x -= distance * math.cos(self.dir)
+            self.y -= distance * math.sin(self.dir)
 
 
 
@@ -164,10 +169,6 @@ class Zombie:
 
         root = chase_or_wander = Selector('추적 또는 배회', chase_if_boy_nearby, wander)
 
-        a5 = Action('순찰 위치 가져오기', self.get_patrol_location)
-        root = patrol = Sequence('순찰', a5,a2)
-
-        root = patrol_or_chase = Selector('순찰 또는 추적', chase_if_boy_nearby, patrol)
 
         self.bt = BehaviorTree(root)
 
