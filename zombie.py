@@ -109,7 +109,11 @@ class Zombie:
         self.x += distance * math.cos(self.dir)
         self.y += distance * math.sin(self.dir)
 
+    def run_away_to(self, tx,ty):
+        pass
 
+    def run_away_boy(self, r=0.5):
+        self.state = 'Walk'
 
 
     def move_to(self, r=0.5):
