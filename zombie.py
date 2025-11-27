@@ -163,10 +163,6 @@ class Zombie:
         return BehaviorTree.SUCCESS
         pass
 
-    def if_boy_nearby(self, distance):
-        return BehaviorTree.SUCCESS if self.distance_less_than(common.boy.x, common.boy.y, self.x, self.y,
-                                                               distance) else BehaviorTree.FAIL
-
     def if_zombie_ball_less(self):
         return BehaviorTree.SUCCESS if self.ball_count < common.boy.ball_count else BehaviorTree.FAIL
 
