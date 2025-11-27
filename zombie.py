@@ -120,7 +120,7 @@ class Zombie:
 
     def run_away_boy(self, r=0.5):
         self.state = 'Walk'
-        self.run_away_to(self.x, self.y)
+        self.run_away_to(common.boy.x, common.boy.y)
         if not self.distance_less_than(common.boy.x, common.boy.y, self.x, self.y, r + 3.0):
             return BehaviorTree.SUCCESS
         else:
